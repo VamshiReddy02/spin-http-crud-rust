@@ -1,1 +1,0 @@
-# spin-http-crud-rust

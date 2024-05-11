@@ -1,0 +1,20 @@
+spin_manifest_version = 2
+
+[application]
+name = "spin-http-crud-rust"
+version = "0.1.0"
+authors = ["vamshireddy <vamshiproject02@gmail.com>"]
+description = ""
+
+[[trigger.http]]
+route = "/..."
+component = "spin-http-crud-rust"
+
+[component.spin-http-crud-rust]
+environment = { DB_URL = "host=localhost user=postgres dbname=spin_dev" }
+source = "target/wasm32-wasi/release/spin_http_crud_rust.wasm"
+allowed_outbound_hosts = ["postgres://localhost"]
+
+[component.spin-http-crud-rust.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
